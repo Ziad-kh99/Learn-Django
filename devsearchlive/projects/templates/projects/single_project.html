@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+{% if project != None %}
+<h1>{{project.title}}</h1>
+
+<h4>Description: {{project.description}}</h4>
+
+{% else %}
+<h4>There is no project with id: {{pk}}</h4>
+
+{% endif %}
+
+
+{% endblock content %}
+
