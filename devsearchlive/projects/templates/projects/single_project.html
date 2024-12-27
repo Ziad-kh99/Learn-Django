@@ -6,12 +6,29 @@
 {% if project != None %}
 <h1>{{project.title}}</h1>
 
+{% for tag in tags %}
+
+    <span style="border: 1px solid  navy; padding: 1em;">{{tag}}</span>
+
+{% endfor %}
+
+<hr>
+
 <h4>Description: {{project.description}}</h4>
+
+<hr>
+
+{% for review in reviews %}
+
+<h4>{{review.value}}: {{review.body}}</h4>
+
+{% endfor %}
 
 {% else %}
 <h4>There is no project with id: {{pk}}</h4>
 
 {% endif %}
+
 
 
 {% endblock content %}

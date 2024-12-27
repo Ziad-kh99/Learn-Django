@@ -1,5 +1,7 @@
 from django.shortcuts import render         # used to reneder templates.
 from django.http import HttpResponse
+from .models import Project
+
 
 projectsList = [
     {
@@ -21,24 +23,23 @@ projectsList = [
 
 
 def projects(request):
-    name = 'Ziad Khaled'
-
+    projects = Project.objects.all()        # return all tuples in project model.
+    # print(f'Projects: {projects}')
     context = {
-        'name': name,
-        'projects': projectsList
+        'projects': projects
     }
 
     return render(request, 'projects/projects.html', context)
 
 def project(request, pk):
-    projectObject = None
-
-    for project in projectsList:
-        if project['id'] == pk:
-            projectObject = project
+    projectObj = Project.objects.get(id=pk)
+    tags = projectObj.tags.all()
+    reviews = projectObj.reviews.all()
 
     context = {
-        'project': projectObject,
+        'project': projectObj,
+        'tags': tags,
+        'reviews': reviews,
         'pk': pk
     }
 
